@@ -137,6 +137,9 @@ importers:
       request:
         specifier: ^2.88.2
         version: 2.88.2
+      self-update:
+        specifier: ^0.0.1
+        version: 0.0.1
       slick-carousel:
         specifier: ^1.8.1
         version: 1.8.1(jquery@3.7.1)
@@ -6986,6 +6989,9 @@ packages:
 
   secure-json-parse@2.7.0:
     resolution: {integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==}
+
+  self-update@0.0.1:
+    resolution: {integrity: sha512-q0mbbnXYlSZmTOQ5jT+WS43M4FnmVzhV2KbQrLUAvJzNNnEznSNy2j+nFHzO/tUXDArlN4byo3FW0GHaEV0GdA==}
 
   selfsigned@2.4.1:
     resolution: {integrity: sha512-th5B4L2U+eGLq1TVh7zNRGBapioSORUeymIydxgFpwww9d2qyKvtuPU2jJuHvYAwwqi2Y596QBL3eEqcPEYL8Q==}
@@ -17502,6 +17508,8 @@ snapshots:
       node-gyp-build: 4.8.2
 
   secure-json-parse@2.7.0: {}
+
+  self-update@0.0.1: {}
 
   selfsigned@2.4.1:
     dependencies:

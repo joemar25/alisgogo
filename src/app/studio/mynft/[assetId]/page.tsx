@@ -39,7 +39,7 @@ const ProductPage: React.FC = () => {
           // Fetch basic asset details
           const details = await getAsset(assetId);
           const jsonURI = details.jsonURI;
-          
+
           if (!jsonURI) {
             console.error("No jsonURI found for asset");
             return;
@@ -101,7 +101,7 @@ const ProductPage: React.FC = () => {
       console.log(error);
     }
   }, [publicKey, connection, sendTransaction, price]);
-  
+
   if (!product) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-black p-4">

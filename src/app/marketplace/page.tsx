@@ -1,3 +1,5 @@
+// src/app/discover/closet/page.tsx
+
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -19,19 +21,16 @@ import Skeleton from "@/components/Skeleton";
 import { getNFTDetail, getNFTList } from "@/utils/nftMarket";
 import { AnchorProvider, Wallet } from "@coral-xyz/anchor";
 import { PublicKey } from "@solana/web3.js";
-import axios from "axios"; // Import axios for metadata fetching
 
 export interface NFTDetail {
   name: string;
-  description: string;
   symbol: string;
-  image?: string; // Image URL from metadata
-  group?: string; // Group address (or undefined)
+  image?: string;
+  group?: string;
   mint: string;
   seller: string;
   price: string;
   listing: string;
-  jsonURI?: string; // The URI to fetch metadata from
 }
 
 const trimAddress = (address: string) =>
@@ -60,6 +59,10 @@ const Closet: React.FC = () => {
     fetchNFTs();
   }, []);
 
+  // useEffect(() => {
+  //   fetchAssets();
+  // }, [publicKey]);
+
   useEffect(() => {
     fetchNFTs();
   }, [wallet]);
@@ -78,42 +81,28 @@ const Closet: React.FC = () => {
 
     try {
       const listings = await getNFTList(provider, connection);
-      
-      // Map through listings and get NFT details and metadata
-      const promises = listings.map(async (list) => {
-        const mint = new PublicKey(list.mint);
-        const nftDetail = await getNFTDetail(mint, connection, list.seller, list.price, list.pubkey);
-        
-        // Fetch metadata from jsonURI if available
-        if (nftDetail.jsonURI) {
-          try {
-            const metadataResponse = await axios.get(nftDetail.jsonURI);
-            const metadata = metadataResponse.data.record || metadataResponse.data; // Adjust based on your metadata structure
-            
-            return {
-              ...nftDetail,
-              name: metadata.name || nftDetail.name,
-              description: metadata.description || nftDetail.description,
-              image: metadata.image || "", // Extract image from metadata
-            };
-          } catch (error) {
-            console.error("Error fetching metadata:", error);
-          }
-        }
+      // const mint = new PublicKey(listings[0].mint);
+      // const detail = await getNFTDetail(mint, connection);
+      console.log(listings);
+      const promises = listings
+        .filter((list) => list.isActive)
+        .map((list) => {
+          const mint = new PublicKey(list.mint);
+          return getNFTDetail(
+            mint,
+            connection,
+            list.seller,
+            list.price,
+            list.pubkey
+          );
+        });
+      const detailedListings = await Promise.all(promises);
+      console.log(detailedListings);
+      //return detailedListings;
 
-        // Return only if group address is empty or undefined
-        if (!nftDetail.group || nftDetail.group === "") {
-          return nftDetail;
-        }
-        return null; // Skip NFTs with group addresses
-      });
-      
-      // Filter out null values and update state
-      const detailedListings = (await Promise.all(promises)).filter(Boolean);
-      setAssets(detailedListings as NFTDetail[]);
+      setAssets(detailedListings);
     } catch (errr) {
       console.log(errr);
-      setError("Failed to fetch assets");
     } finally {
       setIsLoading(false);
     }
@@ -122,8 +111,7 @@ const Closet: React.FC = () => {
   return (
     <div className="p-4 pt-20 bg-white dark:bg-black min-h-screen">
       <h1 className="text-3xl font-bold mb-4 text-center text-black dark:text-white">
-      NFTs For Sale
- 
+        NFTs on sale
       </h1>
 
       {error && <div className="text-red-500 text-center mb-4">{error}</div>}
@@ -150,7 +138,7 @@ const Closet: React.FC = () => {
                   {asset.image ? (
                     <Image
                       src={asset.image}
-                      alt={`${asset.name || "Unknown NFT"} Image`} 
+                      alt={`Asset ${asset.mint}`}
                       layout="fill"
                       objectFit="contain"
                       className="rounded"
@@ -160,14 +148,6 @@ const Closet: React.FC = () => {
                   )}
                 </div>
               </Link>
-
-              <div className="text-black dark:text-white text-sm mb-2">
-                <p className="font-semibold">
-                  {asset.name || "Unknown"} ({asset.symbol})
-                </p>
-                <p>{asset.description || "No description available"}</p>
-              </div>
-
               <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-opacity flex flex-col justify-end items-center opacity-0 group-hover:opacity-100 text-white text-xs p-2">
                 <p className="font-semibold">{asset.name || "Unknown"}</p>
                 <Link
@@ -178,13 +158,23 @@ const Closet: React.FC = () => {
                   {trimAddress(asset.mint)}{" "}
                   <FaExternalLinkAlt className="ml-1" />
                 </Link>
+                {asset.group && (
+                  <Link
+                    href={`https://solana.fm/address/${asset.group}`}
+                    target="_blank"
+                    className="hover:text-gray-300 flex items-center"
+                  >
+                    Group: {trimAddress(asset.group)}{" "}
+                    <FaExternalLinkAlt className="ml-1" />
+                  </Link>
+                )}
               </div>
             </div>
           ))}
         </div>
       ) : (
         <h2 className="text-2xl font-bold mb-4 text-center text-red-500 dark:text-yellow">
-          NFTs For Sale
+          No NFTs on sale
         </h2>
       )}
     </div>

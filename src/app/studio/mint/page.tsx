@@ -3,7 +3,6 @@
 "use client";
 
 import { FC, useEffect, useState } from 'react';
-import Link from 'next/link';
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 import { RequestAirdrop } from './components/RequestAirdrop';
 import useUserSOLBalanceStore from './stores/useUserSOLBalanceStore';
