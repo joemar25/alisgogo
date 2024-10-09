@@ -5,8 +5,7 @@ use anchor_spl::token::{ self};
 use anchor_spl::token_2022::{self,Token2022,Transfer};
 use anchor_spl::token_interface::{ TokenAccount, Mint};
 
-//use spl_token_2022::instruction::*;
-
+use spl_token_2022::instruction::*;
 
 use anchor_lang::AccountsClose;
 
@@ -88,22 +87,20 @@ pub mod solana_nft_marketplace {
         let signer = &[&seeds[..]];
 
         let cpi_accounts = Transfer {
-            from: vault.to_account_info(),
+    from: vault.to_account_info(),
+    to: ctx.accounts.buyer_token_account.to_account_info(),
+    authority: vault.to_account_info(),
+};
 
-            to: nft_account.to_account_info(),
+let cpi_ctx = CpiContext::new_with_signer(
+    ctx.accounts.token_program.to_account_info(),
+    cpi_accounts,
+    signer,
+);
 
-            authority: vault.to_account_info(),
-        };
+// Use transfer_checked instead of the deprecated transfer function
+token_2022::transfer_checked(cpi_ctx, 1, 0)?;
 
-        let cpi_ctx = CpiContext::new_with_signer(
-            ctx.accounts.token_program.to_account_info(),
-
-            cpi_accounts,
-
-            signer
-        );
-
-        token_2022::transfer(cpi_ctx, 1)?;
 
         ctx.accounts.listing.close(seller.to_account_info())?;
 
