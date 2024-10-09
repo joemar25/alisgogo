@@ -8,6 +8,7 @@ import Image from 'next/image'
 const CollectionsAndAuctions: React.FC = () => {
   // GSAP animation ref for the Promotional Banner
   const promotionalBannerRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (promotionalBannerRef.current) {
@@ -75,7 +76,7 @@ const CollectionsAndAuctions: React.FC = () => {
             />
           </div>
           <motion.button
-            ref="/collection"
+            ref={buttonRef} // Updated ref for button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="flex items-center px-4 py-2 mt-4 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-purple-500 to-pink-500"
@@ -272,5 +273,7 @@ const PromotionalBanner = React.forwardRef<HTMLDivElement>((_, ref) => {
     </div>
   );
 });
+
+PromotionalBanner.displayName = "PromotionalBanner";
 
 export default CollectionsAndAuctions;

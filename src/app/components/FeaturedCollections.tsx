@@ -1,7 +1,6 @@
-// src/app/components/FeaturedCollections.tsx
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,11 +9,11 @@ import Card from '@/components/Card';
 import Skeleton from '@/components/Skeleton';
 
 const FeaturedCollections = () => {
-  const collectionAddresses = [
+  const collectionAddresses = useMemo(() => [
     'C9XC1GcJ2JWAesYCNyEc9DPi593b2nudnTrSpbg8qgAo',
     '3TzvHfyKY3JCxwdbpxHtePhv4VgycmHKaSt1zEv55Sh3',
     'JCf17X3yuW2pt7V4JXutQCvj51kt96ackPNUzK3Qkx8w'
-  ];
+  ], []);
 
   const [collections, setCollections] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -37,7 +36,7 @@ const FeaturedCollections = () => {
     };
 
     fetchCollections();
-  }, [collectionAddresses]);
+  }, [collectionAddresses]); // No warning as collectionAddresses is memoized
 
   return (
     <div className="bg-white dark:bg-black text-gray-800 dark:text-white p-4 ">
