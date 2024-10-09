@@ -2,27 +2,28 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Image from 'next/image';
 
 const Categories: React.FC = () => {
   return (
-    <motion.div 
+    <motion.div
       className="w-full px-4 py-20 mx-auto max-w-7xl"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <motion.div 
+      <motion.div
         className="flex items-center mb-2"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.5 }}
       >
-        <img className="w-6 h-6 mr-2" alt="Sparkle icon" src="static/img/sparkle-icon.svg" />
+        <Image className="w-6 h-6 mr-2" alt="Sparkle icon" src="static/img/sparkle-icon.svg" />
         <h2 className="font-heading-3 font-[number:var(--heading-3-font-weight)] text-black text-[length:var(--heading-3-font-size)] tracking-[var(--heading-3-letter-spacing)] leading-[var(--heading-3-line-height)] [font-style:var(--heading-3-font-style)]">
           Categories
         </h2>
       </motion.div>
-      <motion.p 
+      <motion.p
         className="mb-8 font-paragraph font-[number:var(--paragraph-font-weight)] text-gray text-[length:var(--paragraph-font-size)] tracking-[var(--paragraph-letter-spacing)] leading-[var(--paragraph-line-height)] [font-style:var(--paragraph-font-style)]"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -30,8 +31,8 @@ const Categories: React.FC = () => {
       >
         Discover NFT art by categories
       </motion.p>
-      
-      <motion.div 
+
+      <motion.div
         className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
         variants={containerVariants}
         initial="hidden"
@@ -60,7 +61,7 @@ const Categories: React.FC = () => {
           collections={201}
           images={[
             "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/be/b9/4b/pontoon-off-the-beach.jpg?w=900&h=-1&s=1",
-           "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/05/49/b7/paguriran-island.jpg?w=900&h=-1&s=1",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/05/49/b7/paguriran-island.jpg?w=900&h=-1&s=1",
             "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/d5/10/80/caption.jpg?w=900&h=500&s=1",
           ]}
         />
@@ -75,19 +76,19 @@ const Categories: React.FC = () => {
         />
       </motion.div>
 
-      <motion.div 
+      <motion.div
         className="flex justify-center mt-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.5 }}
       >
-        <motion.button 
+        <motion.button
           className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full font-heading-5 font-[number:var(--heading-5-font-weight)] text-[length:var(--heading-5-font-size)] tracking-[var(--heading-5-letter-spacing)] leading-[var(--heading-5-line-height)] [font-style:var(--heading-5-font-style)] flex items-center"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           Explore Categories
-          <img
+          <Image
             className="w-5 h-5 ml-2"
             alt="Arrow icon"
             src="static/img/arrow-icon-6.svg"
@@ -125,7 +126,7 @@ interface CategoryCardProps {
 
 const CategoryCard: React.FC<CategoryCardProps> = ({ name, collections, images }) => {
   return (
-    <motion.div 
+    <motion.div
       className="overflow-hidden bg-white rounded-xl shadow-lg"
       variants={itemVariants}
       whileHover={{ scale: 1.05 }}
@@ -134,21 +135,21 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ name, collections, images }
       <div className="relative aspect-[4/3] p-2">
         <div className="absolute inset-0 grid grid-cols-2 gap-2">
           <div className="relative col-span-1 row-span-2 overflow-hidden rounded-lg">
-            <img
+            <Image
               className="absolute inset-0 w-full h-full object-cover"
               src={images[0]}
               alt={`${name} 1`}
             />
           </div>
           <div className="relative overflow-hidden rounded-lg">
-            <img
+            <Image
               className="absolute inset-0 w-full h-full object-cover"
               src={images[1]}
               alt={`${name} 2`}
             />
           </div>
           <div className="relative overflow-hidden rounded-lg">
-            <img
+            <Image
               className="absolute inset-0 w-full h-full object-cover"
               src={images[2] || images[1]}
               alt={`${name} 3`}

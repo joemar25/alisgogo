@@ -4,6 +4,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { getAsset } from '@/utils/getToken';
+import Image from 'next/image'
 
 interface TokenModalProps {
   tokenAddress: string;
@@ -50,7 +51,7 @@ const TokenModal: React.FC<TokenModalProps> = ({ tokenAddress, isOpen, onClose }
           tokenDetails && (
             <div>
               <h2>{tokenDetails.name}</h2>
-              <img src={tokenDetails.imageURI} alt={tokenDetails.name} />
+              <Image src={tokenDetails.imageURI} alt={tokenDetails.name} />
             </div>
           )
         )}

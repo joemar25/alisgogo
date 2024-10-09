@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import uploadToS3 from '../utils/uploadToS3'; // Adjust the path as per your project structure
 import Spinner from './Spinner'; // Import the spinner component
+import Image from 'next/image'
 
 interface ImageDropzoneProps {
   userId: string;
@@ -42,7 +43,7 @@ const ImageDropzone: React.FC<ImageDropzoneProps> = ({ userId, onUpload, index }
         {loading ? (
           <Spinner /> // Use the Spinner component here
         ) : imageUrl ? (
-          <img src={imageUrl} alt="Uploaded" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+          <Image src={imageUrl} alt="Uploaded" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
         ) : (
           <p>Drag drop a file here, or click to select a file</p>
         )}

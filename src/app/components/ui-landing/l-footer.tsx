@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Image from 'next/image'
 
 const Footer: React.FC = () => {
   return (
@@ -45,7 +46,7 @@ const Footer: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <img
+                <Image
                   className="w-8 h-3"
                   alt="Arrow icon"
                   src="static/img/arrow-icon-5.svg"
@@ -101,7 +102,7 @@ const Footer: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            <img
+            <Image
               className="h-8"
               alt="Social media"
               src="static/img/social-media.png"

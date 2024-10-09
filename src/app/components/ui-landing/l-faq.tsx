@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from 'next/image'
 
 const FAQ: React.FC = () => {
   return (
@@ -12,7 +13,7 @@ const FAQ: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <img
+        <Image
           className="w-8 h-8 mx-auto mb-4"
           alt="Sparkle icon"
           src="static/img/sparkle-icon-6.svg"

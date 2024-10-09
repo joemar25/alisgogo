@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
+import Image from 'next/image'
 
 const WhyChooseUs: React.FC = () => {
   // GSAP animation ref for the feature cards
@@ -41,7 +42,7 @@ const WhyChooseUs: React.FC = () => {
         transition={{ duration: 1 }}
       >
         <div className="flex items-center mb-2">
-          <img
+          <Image
             className="w-6 h-6 mr-2"
             alt="Sparkle icon"
             src="static/img/sparkle-icon-15.svg"
@@ -107,7 +108,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, iconSrc }
       whileHover={{ scale: 1.05 }}
       transition={{ type: "spring", stiffness: 300 }}
     >
-      <img className="mb-4 w-14 h-14" alt="Feature icon" src={iconSrc} />
+      <Image className="mb-4 w-14 h-14" alt="Feature icon" src={iconSrc} />
       <h4 className="mb-2 text-xl text-black font-heading-4">{title}</h4>
       <p className="text-sm font-paragraph text-gray">{description}</p>
     </motion.div>

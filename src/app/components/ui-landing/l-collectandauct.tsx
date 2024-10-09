@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
+import Image from 'next/image'
 
 const CollectionsAndAuctions: React.FC = () => {
   // GSAP animation ref for the Promotional Banner
@@ -29,7 +30,7 @@ const CollectionsAndAuctions: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="flex items-center mb-2">
-            <img className="w-5 h-5 mr-2" alt="Sparkle icon" src="static/img/sparkle-icon-2.svg" />
+            <Image className="w-5 h-5 mr-2" alt="Sparkle icon" src="static/img/sparkle-icon-2.svg" />
             <h2 className="text-xl text-black font-heading-3">Collections</h2>
           </div>
           <p className="mb-4 text-sm font-paragraph text-gray">
@@ -80,7 +81,7 @@ const CollectionsAndAuctions: React.FC = () => {
             className="flex items-center px-4 py-2 mt-4 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-purple-500 to-pink-500"
           >
             Explore Collection
-            <img
+            <Image
               className="w-4 h-4 ml-2"
               alt="Arrow icon"
               src="static/img/arrow-icon-6.svg"
@@ -96,7 +97,7 @@ const CollectionsAndAuctions: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="flex items-center mb-2">
-            <img className="w-5 h-5 mr-2" alt="Sparkle icon" src="static/img/sparkle-icon-3.svg" />
+            <Image className="w-5 h-5 mr-2" alt="Sparkle icon" src="static/img/sparkle-icon-3.svg" />
             <h2 className="text-xl text-black font-heading-3">Get in on the Action</h2>
           </div>
           <p className="mb-4 text-sm font-paragraph text-gray">
@@ -151,7 +152,7 @@ const CollectionCard: React.FC<CollectionCardProps> = ({ title, creator, followe
     >
       <div className="p-4">
         <div className="flex items-center mb-3">
-          <img
+          <Image
             src={avatarSrc}
             alt={`${title} avatar`}
             className="object-cover w-10 h-10 mr-3 rounded-full"
@@ -164,25 +165,25 @@ const CollectionCard: React.FC<CollectionCardProps> = ({ title, creator, followe
           </div>
         </div>
         <div className="grid grid-cols-2 gap-2">
-          <img
+          <Image
             src={images[0]}
             alt={`${title} main`}
             className="w-full h-[180px] object-cover rounded-lg"
           />
           <div className="grid grid-rows-2 gap-2">
             <div className="grid grid-cols-2 gap-2">
-              <img
+              <Image
                 src={images[1]}
                 alt={`${title} image 2`}
                 className="w-full h-[85px] object-cover rounded-lg"
               />
-              <img
+              <Image
                 src={images[2]}
                 alt={`${title} image 3`}
                 className="w-full h-[85px] object-cover rounded-lg"
               />
             </div>
-            <img
+            <Image
               src={images[3]}
               alt={`${title} image 4`}
               className="w-full h-[85px] object-cover rounded-lg"
@@ -211,17 +212,17 @@ const AuctionItem: React.FC<AuctionItemProps> = ({ imageSrc, title, currentBid, 
       transition={{ type: "spring", stiffness: 200 }}
     >
       <div className="relative">
-        <img
+        <Image
           src={imageSrc}
           alt={title}
           className="object-cover w-full h-64"
         />
         <div className="absolute flex items-center px-4 py-2 bg-white rounded-full top-4 left-4">
-          <img className="w-5 h-5 mr-2" alt="Timer icon" src="static/img/timer-icon.svg" />
+          <Image className="w-5 h-5 mr-2" alt="Timer icon" src="static/img/timer-icon.svg" />
           <p className="text-sm text-black font-heading-5">{timeLeft}</p>
         </div>
         <div className="absolute flex items-center px-4 py-2 bg-white rounded-full top-4 right-4">
-          <img className="w-5 h-5 mr-2" alt="User icon" src="static/img/user-icon.svg" />
+          <Image className="w-5 h-5 mr-2" alt="User icon" src="static/img/user-icon.svg" />
           <p className="text-sm text-black font-heading-5">{bidders}</p>
         </div>
       </div>
@@ -229,7 +230,7 @@ const AuctionItem: React.FC<AuctionItemProps> = ({ imageSrc, title, currentBid, 
         <h3 className="mb-4 text-black font-heading-4">{title}</h3>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <img
+            <Image
               src="/static/img/image-placeholder-9.png"
               alt="Bidder"
               className="object-cover w-10 h-10 mr-3 rounded-full"
@@ -252,7 +253,7 @@ const AuctionItem: React.FC<AuctionItemProps> = ({ imageSrc, title, currentBid, 
 const PromotionalBanner = React.forwardRef<HTMLDivElement>((_, ref) => {
   return (
     <div ref={ref} className="relative w-full overflow-hidden h-96 rounded-xl">
-      <img
+      <Image
         src="/static/img/2022-12-10-1.png"
         alt="Church building"
         className="object-cover w-full h-full"

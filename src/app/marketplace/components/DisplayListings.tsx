@@ -1,6 +1,7 @@
 // src/app/marketplace/components/DisplayListings.tsx
 import { useEffect, useState } from 'react';
 import { LAMPORTS_PER_SOL } from '@solana/web3.js';
+import Image from 'next/image'
 
 interface Product {
   name: string;
@@ -27,7 +28,7 @@ const DisplayListings: React.FC = () => {
       <h2>Listed Products</h2>
       {products.map((product, index) => (
         <div key={index}>
-          <img src={product.imageUrl1} alt={product.name} />
+          <Image src={product.imageUrl1} alt={product.name} />
           <p>Name: {product.name}</p>
           <p>Price: {product.price / LAMPORTS_PER_SOL} SOL</p>
         </div>

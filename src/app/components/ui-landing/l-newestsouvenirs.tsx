@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
+import Image from 'next/image'
 
 const NewestSouvenirs: React.FC = () => {
   // GSAP animation ref for the souvenirs section
@@ -26,7 +27,7 @@ const NewestSouvenirs: React.FC = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <img
+        <Image
           className="w-6 h-6 mr-2"
           alt="Sparkle icon"
           src="static/img/sparkle-icon-4.svg"
@@ -43,7 +44,7 @@ const NewestSouvenirs: React.FC = () => {
       >
         Explore the Latest NFT Travel Souvenirs
       </motion.p>
-      
+
       <motion.div
         className="flex items-center justify-between mb-8"
         initial={{ opacity: 0, y: -20 }}
@@ -57,7 +58,7 @@ const NewestSouvenirs: React.FC = () => {
         </div>
         <div className="flex items-center">
           <span className="mr-2 text-black font-heading-5">Most Recent</span>
-          <img className="w-6 h-6" alt="Arrow icon" src="static/img/arrow-icon-3.svg" />
+          <Image className="w-6 h-6" alt="Arrow icon" src="static/img/arrow-icon-3.svg" />
         </div>
       </motion.div>
 
@@ -111,7 +112,7 @@ const FilterOption: React.FC<FilterOptionProps> = ({ icon, label }) => (
     whileHover={{ scale: 1.05 }}
     transition={{ type: "spring", stiffness: 300 }}
   >
-    <img className="w-5 h-5 mr-2" alt={`${label} icon`} src={`static/img/${icon}`} />
+    <Image className="w-5 h-5 mr-2" alt={`${label} icon`} src={`static/img/${icon}`} />
     <span className="text-black font-heading-5">{label}</span>
   </motion.div>
 );
@@ -132,20 +133,20 @@ const SouvenirCard: React.FC<SouvenirCardProps> = ({ imageSrc, title, creator, p
       transition={{ type: "spring", stiffness: 200 }}
     >
       <div className="relative">
-        <img
+        <Image
           src={imageSrc}
           alt={title}
           className="object-cover w-full h-64"
         />
         <div className="absolute flex items-center px-3 py-1 bg-white rounded-full top-3 left-3">
-          <img className="w-4 h-4 mr-2" alt="Heart icon" src="static/img/heart-icon-8.svg" />
+          <Image className="w-4 h-4 mr-2" alt="Heart icon" src="static/img/heart-icon-8.svg" />
           <span className="text-black font-heading-5">{likes}</span>
         </div>
       </div>
       <div className="p-4">
         <h3 className="mb-2 text-xl text-black font-heading-4">{title}</h3>
         <div className="flex items-center mb-4">
-          <img
+          <Image
             src="/static/img/image-placeholder-12.png"
             alt="Creator"
             className="w-10 h-10 mr-3 rounded-full"
@@ -153,7 +154,7 @@ const SouvenirCard: React.FC<SouvenirCardProps> = ({ imageSrc, title, creator, p
           <span className="font-paragraph text-gray">{creator}</span>
         </div>
         <div className="flex items-center">
-          <img
+          <Image
             className="w-5 h-5 mr-2"
             alt="Ethereum icon"
             src="static/img/ethereum-icon-1.svg"
