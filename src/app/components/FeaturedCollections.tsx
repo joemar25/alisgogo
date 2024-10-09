@@ -37,7 +37,7 @@ const FeaturedCollections = () => {
     };
 
     fetchCollections();
-  }, []);
+  }, [collectionAddresses]);
 
   return (
     <div className="bg-white dark:bg-black text-gray-800 dark:text-white p-4 ">

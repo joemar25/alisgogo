@@ -74,7 +74,7 @@ const CollectionsAndAuctions: React.FC = () => {
             />
           </div>
           <motion.button
-          href="/collection"
+            ref="/collection"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="flex items-center px-4 py-2 mt-4 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-purple-500 to-pink-500"
@@ -100,7 +100,7 @@ const CollectionsAndAuctions: React.FC = () => {
             <h2 className="text-xl text-black font-heading-3">Get in on the Action</h2>
           </div>
           <p className="mb-4 text-sm font-paragraph text-gray">
-            Bid on Exclusive Travel NFTs Showcasing Stunning Tourist Destinations in AlisGo's Featured Live Auction!
+            Bid on Exclusive Travel NFTs Showcasing Stunning Tourist Destinations in AlisGo&apos;s Featured Live Auction!
           </p>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <AuctionItem
@@ -252,9 +252,9 @@ const AuctionItem: React.FC<AuctionItemProps> = ({ imageSrc, title, currentBid, 
 const PromotionalBanner = React.forwardRef<HTMLDivElement>((_, ref) => {
   return (
     <div ref={ref} className="relative w-full overflow-hidden h-96 rounded-xl">
-      <img 
-        src="/static/img/2022-12-10-1.png" 
-        alt="Church building" 
+      <img
+        src="/static/img/2022-12-10-1.png"
+        alt="Church building"
         className="object-cover w-full h-full"
       />
       <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/70 to-transparent">
