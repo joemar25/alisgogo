@@ -1,8 +1,15 @@
 use anchor_lang::prelude::*;
+
+use anchor_spl::token::{ self};
+
 use anchor_spl::token_2022::{self,Token2022,Transfer};
 use anchor_spl::token_interface::{ TokenAccount, Mint};
-use spl_token::instruction as spl_token_2022;
+
+//use spl_token_2022::instruction::*;
+
+
 use anchor_lang::AccountsClose;
+
 use crate::constant::{ PREFIX };
 
 declare_id!("GfLfsgUP5dQ2gGN4DAPSGZErKSCVZzsVBtof7ZafUP3n");
@@ -21,17 +28,19 @@ pub mod solana_nft_marketplace {
         let vault = &mut ctx.accounts.vault;
 
         //let nft_account = &mut ctx.accounts.nft_account;
+
         // Transfer the NFT to PDA account
-        let ix = spl_token_2022::transfer_checked(
-            &ctx.accounts.token_program.key(),
-            &ctx.accounts.nft_account.key(),
-            &ctx.accounts.mint.key(),
-            &vault.key(),
-            &seller.key(),
-            &[],
-            1,
-            0
-        )?;
+
+        let ix = spl_token_2022::instruction::transfer_checked(
+                &ctx.accounts.token_program.key(),
+                &ctx.accounts.nft_account.key(), 
+		&ctx.accounts.mint.key(),
+                &vault.key(),
+                &seller.key(),
+                &[],
+                1,
+		0
+            )?;
 
         anchor_lang::solana_program::program::invoke(
             &ix,
